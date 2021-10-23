@@ -1,0 +1,59 @@
+version: 2
+general:
+  branches:
+    only:
+      - master
+      - develop
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7.4
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: postgres
+          RAILS_ENV: test
+      - image: circleci/postgres:11.12
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_DB: api_test
+
+    working_directory: ~/shift_management_app/api/
+    steps:
+      - checkout
+
+      - run:
+          name: Install System Dependencies
+          command: |
+            sudo apt-get update --allow-releaseinfo-change
+            sudo apt-get install -y lsb-release
+
+      - restore_cache:
+          name: Restore bundle cache
+          keys:
+            - api-bundle-{{ checksum "api/Gemfile.lock" }}
+            - api-bundle-
+
+      - run:
+          name: Bundle Install
+          command: api/bin/bundle check --path api/vendor/bundle || api/bin/bundle install --path api/vendor/bundle --jobs 4 --retry 3
+
+      - save_cache:
+          name: Store bundle cache
+          key: api-bundle-{{ checksum "api/Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      
+      - run:
+          name: Set up DB
+          command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
+
+      - run: api/bin/bundle exec rails db:create
+      - run: api/bin/bundle exec rails db:schema:load
+
+      - run:
+          name: RSpec
+          command: api/bin/bundle exec rspec
+
+      - store_artifacts:
+          path: coverage

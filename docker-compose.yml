@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    volumes: 
+      - postgres-data:/var/lib/postgresql/data
+    environment: 
+      - "POSTGRESQL_HOST=db"
+      - "POSTGRES_USER=postgres"  
+      - "POSTGRES_PASSWORD=postgres"
+    ports:
+      - 5432:5432
+  api:
+    build:
+      context: ./api/
+      dockerfile: Dockerfile
+    command: /bin/sh -c "rm -f /$WORKDIR/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./api:/$WORKDIR
+      - ./api/vendor/bundle:/$WORKDIR/vendor/bundle
+    environment:
+      - TZ=Asia/Tokyo
+      - DATABASE_HOST=db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+    ports:
+      - $API_PORT:$CONTAINER_PORT
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
+  front:
+    build:
+      context: ./front/
+      dockerfile: Dockerfile
+    volumes:
+      - ./front:/usr/src/$WORKDIR
+    command: sh -c "cd /usr/src/$WORKDIR/app && yarn start"
+    ports:
+      - $FRONT_PORT:$CONTAINER_PORT
+volumes:
+  postgres-data:
+    driver: local
+    
