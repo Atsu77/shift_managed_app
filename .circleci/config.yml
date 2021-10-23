@@ -18,7 +18,7 @@ jobs:
           POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: api_test
 
-    working_directory: ~/shift_management_app/api/
+    working_directory: ~/shift_managed_app/api/
     steps:
       - checkout
 
