@@ -6,4 +6,11 @@ class ApplicationController < ActionController::API
 
     head :forbidden
   end
+
+  def render_errors(object)
+    render json: {
+      errors: object.errors.full_messages.join('、')
+    }, status: :bad_request
+  end
 end
+
