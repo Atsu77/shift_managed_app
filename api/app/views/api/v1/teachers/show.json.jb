@@ -1,0 +1,8 @@
+{
+  teacher: {
+    id: @teacher.id,
+    name: @teacher.name,
+    gender: @teacher.gender,
+    comment: @teacher.comment
+  }
+}
