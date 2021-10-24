@@ -9,4 +9,6 @@ class Teacher < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates :comment, length: { maximum: 100 }
+
+  mount_uploader :image, ImageUploader
 end
