@@ -61,3 +61,4 @@ front/app/yarn-debug.log*
 front/app/yarn-error.log*
 
 api/vendor/*
+api/spec/images/*
