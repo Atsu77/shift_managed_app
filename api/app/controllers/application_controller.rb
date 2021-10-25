@@ -1,4 +1,5 @@
-class ApplicationController < ActionController::API
+# セッションを使うためApplicationController::APIを継承していない
+class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def require_user_logged_in
