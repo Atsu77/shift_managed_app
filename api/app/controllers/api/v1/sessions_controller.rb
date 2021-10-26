@@ -17,9 +17,9 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def test_user
-    @teacher = Teacher.find_by(email: 'tester@example.com')
+    @user = Teacher.find_by(email: 'tester@example.com')
 
-    session[:user_id] = @teacher.id
+    session[:user_id] = @user.id
 
     render 'show.json.jb'
   end
@@ -27,10 +27,12 @@ class Api::V1::SessionsController < ApplicationController
   private
 
   def login(email, password)
-    @teacher = Teacher.find_by(email: email)
-    return false unless @teacher&.authenticate(password)
+    @user ||= Teacher.find_by(email: email)
+    @user ||= Student.find_by(email: email)
 
-    session[:user_id] = @teacher.id
+    return false unless @user&.authenticate(password)
+
+    session[:user_id] = @user.id
     true
   end
 end
