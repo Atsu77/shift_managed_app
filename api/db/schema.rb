@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_002813) do
+ActiveRecord::Schema.define(version: 2021_10_26_015726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "komas", force: :cascade do |t|
+    t.bigint "teacher_id"
+    t.bigint "student_id"
+    t.bigint "subject_id"
+    t.datetime "date"
+    t.string "koma"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_komas_on_student_id"
+    t.index ["subject_id"], name: "index_komas_on_subject_id"
+    t.index ["teacher_id"], name: "index_komas_on_teacher_id"
+  end
 
   create_table "students", force: :cascade do |t|
     t.string "name"
@@ -52,6 +65,9 @@ ActiveRecord::Schema.define(version: 2021_10_26_002813) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "komas", "students"
+  add_foreign_key "komas", "subjects"
+  add_foreign_key "komas", "teachers"
   add_foreign_key "subject_teachers", "subjects"
   add_foreign_key "subject_teachers", "teachers"
 end
