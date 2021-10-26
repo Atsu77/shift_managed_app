@@ -1,5 +1,6 @@
 class Teacher < ApplicationRecord
   has_secure_password
+  has_many :subject_teachers, through: :subjects
 
   before_save { email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }
