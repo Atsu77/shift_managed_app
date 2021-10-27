@@ -4,11 +4,12 @@ class Koma < ApplicationRecord
   belongs_to :student
 
   validate :day_after_today
-  validates :koma, inclusion: %w(S A B C D)
+  validates :date, presence: true
+  validates :koma, inclusion: %w(S A B C D), presence: true
 
   def day_after_today
-    if date < Date.today
-      errors.add(:date, '今日より前の日付を入力してください') 
+    if date == nil || date <= Date.today
+      errors.add(:date, '日付が入力されてないか、今日より後の日付を入力してください') 
     end
   end
 end
