@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :koma do
-    date { Date.tomorrow }
+    date { Date.today + 1 }
     koma { 'A' }
     association :student
     association :teacher
