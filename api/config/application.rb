@@ -47,9 +47,12 @@ module Myapp
 
     config.api_only = true
 
+    # Cookie storeを有効にする
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
     config.middleware.use ActionDispatch::ContentSecurityPolicy::Middleware
 
+    # postgresqlのidを1から振り直すファイルのパスを読み込む
+    config.paths.add 'lib', eager_load: true
   end
 end
