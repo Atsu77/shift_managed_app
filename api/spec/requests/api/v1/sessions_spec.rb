@@ -31,6 +31,13 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
         expect(response).to have_http_status :bad_request
       end
     end
+
+    context 'sign_inメソッドの動作を確かめる' do
+      it 'リクエストが成功すること' do
+        sign_in teacher
+        expect(response).to have_http_status :ok
+      end
+    end
   end
 
   describe 'DELETE /api/v1/sessions' do

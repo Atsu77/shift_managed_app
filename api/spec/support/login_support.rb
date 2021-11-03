@@ -2,7 +2,7 @@ module LoginSupport
   def sign_in(user)
     params = {session: {
       email: user.email,
-      password: user.password
+      password: 'password'
     }}.to_json
     headers = { 'Content-Type' => 'application/json' }
 

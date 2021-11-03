@@ -1,7 +1,7 @@
 class Koma < ApplicationRecord
-  belongs_to :teacher
-  belongs_to :subject
-  belongs_to :student
+  belongs_to :teacher, optional: true
+  belongs_to :subject, optional: true
+  belongs_to :student, optional: true
 
   validate :day_after_today
   validates :date, presence: true

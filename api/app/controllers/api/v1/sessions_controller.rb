@@ -1,10 +1,10 @@
 class Api::V1::SessionsController < ApplicationController
-  
+
   def create
     email = params[:session][:email].downcase
     password = params[:session][:password]
     if login(email, password)
-    render 'show.json.jb'
+      render 'show.json.jb'
     else
       render json: {message: 'Login failed'}, status: :bad_request
     end

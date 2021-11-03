@@ -1,5 +1,5 @@
 class Api::V1::TeachersController < ApplicationController
-  before_action :require_user_logged_in, only: %i(update)
+before_action :require_user_logged_in, only: %i(update)
 
   def show
     @teacher = Teacher.find(params[:id])
@@ -19,6 +19,7 @@ class Api::V1::TeachersController < ApplicationController
     end
   end
 
+  private
   def new_teacher_params
     params.require(:teacher).permit(:name, :email, :password, :password_confirmation)
   end

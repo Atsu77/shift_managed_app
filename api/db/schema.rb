@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_015726) do
+ActiveRecord::Schema.define(version: 2021_11_03_013137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,9 +65,6 @@ ActiveRecord::Schema.define(version: 2021_10_26_015726) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "komas", "students"
-  add_foreign_key "komas", "subjects"
-  add_foreign_key "komas", "teachers"
   add_foreign_key "subject_teachers", "subjects"
   add_foreign_key "subject_teachers", "teachers"
 end
