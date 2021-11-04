@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   has_secure_password
+  has_many :komas
 
   before_save { email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }
