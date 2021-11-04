@@ -53,3 +53,15 @@ subjects_names.each do |subject|
     title: subject
   )
 end
+
+komas = ['S', 'A', 'B', 'C', 'D']
+
+# 各教師のシフトを登録する
+teachers = Teacher.order(:created_at).take(10)
+teachers.each do |teacher|
+  teacher.komas.create!(
+    date: Date.today + Random.rand(6) + 1,
+    koma: komas[Random.rand(5)],
+    subject_id: Random.rand(5) + 1
+  )
+end
