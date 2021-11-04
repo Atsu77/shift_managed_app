@@ -79,5 +79,20 @@ RSpec.describe "KomaTeacherApis", type: :request do
       end
     end
 
+    describe 'DELETE /api/v1/teachers/:teacher_id/komas/:id' do
+      before do
+        teacher.komas.create(
+          date: Date.today + 1,
+          koma: 'S',
+          subject_id: 1
+        )
+      end
+
+      it 'リクエストが成功すること' do
+        delete "/api/v1/teachers/#{teacher.id}/komas/#{teacher.komas.first.id}",
+        headers: headers
+        expect(response). to have_http_status :ok
+      end
+    end
   end
 end

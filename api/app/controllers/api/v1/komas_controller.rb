@@ -28,6 +28,17 @@ class Api::V1::KomasController < ApplicationController
     end
   end
 
+  def destroy
+    koma = Koma.find(params[:id])
+    date_format = koma.date.strftime("%Y年 %m月 %d日")
+
+    return unless koma.teacher == current_user
+
+    koma.destroy
+
+    render json: {message: "#{date_format}の#{koma.koma}コマを削除しました"}
+  end
+
   private
   def koma_params
     params.require(:koma).permit(:date, :koma, :subject_id)
