@@ -1,0 +1,17 @@
+komas = @komas.map do |koma|
+  teacher = @teacher && {
+    id: @teacher.id,
+    name: @teacher.name,
+    email: @teacher.email,
+  }
+    
+  {
+    id: koma.id,
+    date: koma.date,
+    koma: koma.koma,
+    subject: Subject.find(koma.subject_id).title,
+    teacher: teacher
+  }
+end
+
+{komas: komas}

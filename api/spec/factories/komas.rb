@@ -4,6 +4,5 @@ FactoryBot.define do
     koma { 'A' }
     association :student
     association :teacher
-    association :subject
   end
 end

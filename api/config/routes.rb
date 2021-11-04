@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
 
       resources :teachers, only: %i(create update show) do
-        resource :komas, only: %i(create update show delete)
+        resources :komas, only: %i(index create update show delete)
       end
       resources :students, only: %i(create update show)
       
