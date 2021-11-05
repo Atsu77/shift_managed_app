@@ -1,8 +1,8 @@
 komas = @komas.map do |koma|
-  teacher = @teacher && {
-    id: @teacher.id,
-    name: @teacher.name,
-    email: @teacher.email,
+  user = current_user && {
+    id: current_user.id,
+    name: current_user.name,
+    email: current_user.email,
   }
     
   {
@@ -10,7 +10,7 @@ komas = @komas.map do |koma|
     date: koma.date,
     koma: koma.koma,
     subject: Subject.find(koma.subject_id).title,
-    teacher: teacher
+    user: user
   }
 end
 
