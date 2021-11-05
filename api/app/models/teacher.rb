@@ -1,6 +1,7 @@
 class Teacher < ApplicationRecord
   has_secure_password
-  has_many :subject_teachers, through: :subjects
+  has_many :subject_teachers
+  has_many :subjects, through: :subject_teachers
   has_many :komas
 
   before_save { email.downcase! }
@@ -13,4 +14,17 @@ class Teacher < ApplicationRecord
   validates :comment, length: { maximum: 100 }
 
   mount_uploader :image, ImageUploader
+
+  def subject_save(subject_ids)
+    subjects = []
+    Teacher.transaction do
+      subject_ids.each do |subject_id|
+        subjects << subject_teachers.build(subject_id: subject_id)
+      end
+      SubjectTeacher.import subjects, validate: true
+    end
+      true
+    rescue StandardError => e
+      false
+  end
 end
