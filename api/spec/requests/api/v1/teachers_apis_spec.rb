@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'TeachersApis', type: :request do
+RSpec.describe 'Api::V1::Teachers', type: :request do
   describe 'GET /api/v1/teachers/:id' do
     let(:teacher) { create(:teacher) }
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "KomaTeacherApis", type: :request do
+RSpec.describe "Api::V1::Komas", type: :request do
   let(:teacher) {create(:teacher)} 
   let(:headers) { {'Content-Type' => 'multipart/form-data'} }
 
