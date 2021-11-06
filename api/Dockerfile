@@ -1,5 +1,9 @@
 FROM ruby:2.7
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y \
+    nodejs \
+    postgresql-client \
+    vim \
+    imagemagick
 RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
