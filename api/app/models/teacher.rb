@@ -13,6 +13,7 @@ class Teacher < ApplicationRecord
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates :comment, length: { maximum: 100 }
 
+  has_one_attached :image
   mount_uploader :image, ImageUploader
 
   def subject_save(subject_ids)

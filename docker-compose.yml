@@ -24,6 +24,8 @@ services:
       - DATABASE_HOST=db
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=postgres
+      - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+      - AWS_SECRET_KEY=$AWS_SECRET_KEY
     ports:
       - $API_PORT:$CONTAINER_PORT
     depends_on:

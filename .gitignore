@@ -62,3 +62,9 @@ front/app/yarn-error.log*
 
 api/vendor/*
 api/spec/images/*
+
+# 環境変数
+.env
+
+# 画像のアップロード先
+api/public/uploads
