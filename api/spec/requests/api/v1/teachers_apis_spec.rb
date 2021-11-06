@@ -50,7 +50,7 @@ RSpec.describe 'Api::V1::Teachers', type: :request do
     it 'リクエストが成功すること' do
       params = { teacher: {
         name: 'test',
-        image: Rack::Test::UploadFile.new('spec/images/test_normal_image.jpg', 'image/jpeg'),
+        image: Rack::Test::UploadedFile.new('spec/images/test_normal_image.jpg', 'image/jpeg'),
         gender: 'male'
       }}
       put "/api/v1/teachers/#{teacher.id}", params: params,

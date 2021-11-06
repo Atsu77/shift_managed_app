@@ -19,8 +19,24 @@ before_action :require_user_logged_in, only: %i(update)
     end
   end
 
+  def update
+    teacher = Teacher.find(params[:id])
+
+    raise id unless teacher == current_user
+
+    if teacher.update(edit_teacher_params)
+      render json: {message: 'ユーザー情報を変更しました'}
+    else
+      render json: {message: teacher.errors.full_messages.join(', ')}, status: :bad_request
+    end
+  end
+
   private
   def new_teacher_params
     params.require(:teacher).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def edit_teacher_params
+    params.require(:teacher).permit(:name, :email, :gender, :image, :comment)
   end
 end
