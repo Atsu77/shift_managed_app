@@ -28,4 +28,11 @@ class Teacher < ApplicationRecord
     rescue StandardError => e
       false
   end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |teacher|
+      teacher.name = "ゲスト"
+      teacher.password = SecureRandom.urlsafe_base64
+    end
+  end
 end

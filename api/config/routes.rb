@@ -6,6 +6,8 @@ Rails.application.routes.draw do
         resources :subjects, only: %i(show create update destroy)
         resources :komas, only: %i(index create update destroy)
       end
+
+      post '/teachers/guest_sign_in', to: 'teachers#guest_sign_in'
       
       resources :students, only: %i(create update show) do
         resources :komas, only: %i(index create update destroy)
