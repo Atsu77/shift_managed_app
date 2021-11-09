@@ -1,4 +1,6 @@
 class Student < ApplicationRecord
+  include CommonModule
+
   has_secure_password
   has_many :komas
 

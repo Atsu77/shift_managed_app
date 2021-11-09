@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::Sessions', type: :request do
+  let(:headers) { {'Content-Type' => 'application/json' }}
   describe 'POST /api/v1/sessions' do
     let(:teacher) { create(:teacher) }
 
@@ -12,7 +13,6 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
             password: 'password'
           }
         }.to_json
-        headers = { 'Content-Type' => 'application/json' }
         post '/api/v1/sessions', headers: headers, params: params
         expect(response).to have_http_status :ok
       end
@@ -26,7 +26,6 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
             password: 'password'
           }
         }.to_json
-        headers = { 'Content-Type' => 'application/json' }
         post '/api/v1/sessions', headers: headers, params: params
         expect(response).to have_http_status :bad_request
       end
@@ -49,7 +48,6 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
           password: 'password'
         }
       }.to_json
-      headers = { 'Content-Type' => 'application/json' }
       post '/api/v1/sessions', headers: headers, params: params
     end
 
@@ -67,8 +65,28 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
     end
 
     it 'スキーマ通りであること' do
-      post '/api/v1/sessions/test_user'
+      post '/api/v1/sessions/test_user', headers: headers
 
+      expect(response).to have_http_status :ok
+    end
+  end
+
+  describe 'ゲストログインについて' do
+    it '講師用ゲストログインのリクエストが成功すること' do
+      params = {
+        is_teacher: true
+      }.to_json
+
+      post '/api/v1/sessions/guest_sign_in', headers: headers, params: params
+      expect(response).to have_http_status :ok
+    end
+
+    it '生徒用ゲストログインのリクエストが成功すること' do
+      params = {
+        is_teacher: false
+      }.to_json
+
+      post '/api/v1/sessions/guest_sign_in', headers: headers, params: params
       expect(response).to have_http_status :ok
     end
   end

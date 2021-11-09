@@ -10,9 +10,10 @@ Rails.application.routes.draw do
       resources :students, only: %i(create update show) do
         resources :komas, only: %i(index create update destroy)
       end
-      
+
       resource :sessions, only: %i(show create destroy) do
         post 'test_user', on: :collection
+        post 'guest_sign_in', to: 'sessions#guest_sign_in'
       end
     end
   end
