@@ -32,15 +32,6 @@ class Api::V1::TeachersController < ApplicationController
     end
   end
 
-  def guest_sign_in
-    teacher = Teacher.guest
-    if login(teacher.email, teacher.password)
-      render json: { message: '講師のゲストユーザーとしてログインしました' }
-    else
-      render json: { message: 'ログインに失敗しました' }, status: :bad_request
-    end
-  end
-
   private
 
   def new_teacher_params

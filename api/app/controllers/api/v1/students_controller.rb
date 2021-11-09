@@ -1,5 +1,5 @@
 class Api::V1::StuentsController < ApplicationController
-  before_action :require_user_logged_in, only: %i(update)
+  before_action :require_user_logged_in, only: %i[update]
 
   def show
     @student = Student.find(params[:id])

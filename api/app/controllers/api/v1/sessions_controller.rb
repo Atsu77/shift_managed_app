@@ -24,4 +24,15 @@ class Api::V1::SessionsController < ApplicationController
     render 'show.json.jb'
   end
 
+  def guest_sign_in
+    binding.pry
+    user = params[:is_teacher] ? Teacher.guest : Student.guest
+
+    if login(user.email, user.password)
+      render json: { message: '講師のゲストユーザーとしてログインしました' }
+    else
+      render json: { message: 'ログインに失敗しました' }, status: :bad_request
+    end
+  end
+
 end

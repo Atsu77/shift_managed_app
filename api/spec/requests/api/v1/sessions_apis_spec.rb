@@ -71,9 +71,22 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
     end
   end
 
-  describe 'POST /api/v1/teachers/guest_sign_in' do
-    it 'リクエストが成功すること' do
-      post '/api/v1/teachers/guest_sign_in', headers: headers
+  describe 'ゲストログインについて' do
+    it '講師用ゲストログインのリクエストが成功すること' do
+      params = {
+        is_teacher: true
+      }.to_json
+
+      post '/api/v1/sessions/guest_sign_in', headers: headers, params: params
+      expect(response).to have_http_status :ok
+    end
+
+    it '生徒用ゲストログインのリクエストが成功すること' do
+      params = {
+        is_teacher: false
+      }.to_json
+
+      post '/api/v1/sessions/guest_sign_in', headers: headers, params: params
       expect(response).to have_http_status :ok
     end
   end

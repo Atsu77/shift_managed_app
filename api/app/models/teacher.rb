@@ -1,4 +1,6 @@
 class Teacher < ApplicationRecord
+  include CommonModule
+
   has_secure_password
   has_many :subject_teachers
   has_many :subjects, through: :subject_teachers
@@ -24,15 +26,8 @@ class Teacher < ApplicationRecord
       end
       SubjectTeacher.import subjects, validate: true
     end
-      true
-    rescue StandardError => e
-      false
-  end
-
-  def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |teacher|
-      teacher.name = "ゲスト"
-      teacher.password = SecureRandom.urlsafe_base64
-    end
+    true
+  rescue StandardError => e
+    false
   end
 end
