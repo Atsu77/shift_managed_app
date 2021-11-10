@@ -13,7 +13,7 @@ RSpec.describe 'Api::V1::Teachers', type: :request do
   describe 'POST /api/v1/teachers' do
     let(:valid_params){{
       name: 'Test account',
-      email: 'tester@example.com',
+      email: 'sample_testuser@example.com',
       password: 'password',
       password_confirmation: 'password',
     }}

@@ -64,11 +64,6 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
       password: 'password', password_confirmation: 'password')
     end
 
-    it 'スキーマ通りであること' do
-      post '/api/v1/sessions/test_user', headers: headers
-
-      expect(response).to have_http_status :ok
-    end
   end
 
   describe 'ゲストログインについて' do

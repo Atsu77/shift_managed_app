@@ -6,7 +6,9 @@ class Teacher < ApplicationRecord
   has_many :subjects, through: :subject_teachers
   has_many :komas
 
-  before_save { email.downcase! }
+  before_save do
+    email.downcase!
+  end
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -17,17 +19,4 @@ class Teacher < ApplicationRecord
 
   has_one_attached :image
   mount_uploader :image, ImageUploader
-
-  def subject_save(subject_ids)
-    subjects = []
-    Teacher.transaction do
-      subject_ids.each do |subject_id|
-        subjects << subject_teachers.build(subject_id: subject_id)
-      end
-      SubjectTeacher.import subjects, validate: true
-    end
-    true
-  rescue StandardError => e
-    false
-  end
 end

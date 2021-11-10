@@ -38,7 +38,7 @@ RSpec.describe Teacher, type: :model do
     end
 
     it '重複したメールアドレスなら無効な状態であること' do
-      FactoryBot.create(:teacher, email: 'tester@example.com')
+      FactoryBot.build(:teacher, email: 'tester@example.com')
       teacher.email = 'tester@example.com'
       teacher.valid?
       expect(teacher.errors[:email]).to include('はすでに存在します')
@@ -51,9 +51,9 @@ RSpec.describe Teacher, type: :model do
     end
 
     it 'メールアドレスが保存される前に小文字に変換されること' do
-      teacher.email = 'TESTER@example.com'
-      teacher.save
-      expect(teacher.email).to eq 'tester@example.com'
+      teacher_2 = FactoryBot.build(:teacher, email: 'TESTER_2@example.com')
+      teacher_2.save
+      expect(teacher_2.email).to eq 'tester_2@example.com'
     end
   end
 
