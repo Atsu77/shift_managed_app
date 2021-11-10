@@ -25,7 +25,6 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def guest_sign_in
-    binding.pry
     user = params[:is_teacher] ? Teacher.guest : Student.guest
 
     if login(user.email, user.password)
