@@ -6,7 +6,9 @@ class Teacher < ApplicationRecord
   has_many :subjects, through: :subject_teachers
   has_many :komas
 
-  before_save { email.downcase! }
+  before_save do
+    email.downcase!
+  end
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -17,5 +19,4 @@ class Teacher < ApplicationRecord
 
   has_one_attached :image
   mount_uploader :image, ImageUploader
-
 end
