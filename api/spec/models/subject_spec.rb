@@ -5,6 +5,7 @@ RSpec.describe Subject, type: :model do
 
   describe '科目名を登録できる場合' do
     it '新規登録できること' do
+      subject = Subject.new(title: 'プログラミング')
       expect(subject).to be_valid
     end
   end
