@@ -13,27 +13,27 @@ design/*
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-api/.bundle
-api/vendor/*
+.bundle
+vendor/*
 
 # Ignore all logfiles and tempfiles.
-api/log/*
-api/tmp/*
-api/!/log/.keep
-api/!/tmp/.keep
+log/*
+tmp/*
+!/log/.keep
+!/tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
-api/tmp/pids/*
-api/!/tmp/pids/
-api/!/tmp/pids/.keep
+tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
 
 # Ignore uploaded files in development.
-api/storage/*
-api/!/storage/.keep
-api/.byebug_history
+storage/*
+!/storage/.keep
+.byebug_history
 
 # Ignore master key for decrypting credentials and more.
-api/config/master.key
+config/master.key
 
 # フロントエンド
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
@@ -60,11 +60,11 @@ front/app/npm-debug.log*
 front/app/yarn-debug.log*
 front/app/yarn-error.log*
 
-api/vendor/*
-api/spec/images/*
+vendor/*
+spec/images/*
 
 # 環境変数
 .env
 
 # 画像のアップロード先
-api/public/uploads
+public/uploads

@@ -17,8 +17,8 @@ services:
       dockerfile: Dockerfile
     command: /bin/sh -c "rm -f /$WORKDIR/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - ./api:/$WORKDIR
-      - ./api/vendor/bundle:/$WORKDIR/vendor/bundle
+      - .:/$WORKDIR
+      - ./vendor/bundle:/$WORKDIR/vendor/bundle
     environment:
       - TZ=Asia/Tokyo
       - DATABASE_HOST=db

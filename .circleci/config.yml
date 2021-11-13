@@ -18,7 +18,7 @@ jobs:
           POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: api_test
 
-    working_directory: ~/shift_managed_app/api/
+    working_directory: ~/shift_managed_app/
     steps:
       - checkout
 
@@ -31,16 +31,16 @@ jobs:
       - restore_cache:
           name: Restore bundle cache
           keys:
-            - api-bundle-{{ checksum "api/Gemfile.lock" }}
+            - api-bundle-{{ checksum "Gemfile.lock" }}
             - api-bundle-
 
       - run:
           name: Bundle Install
-          command: api/bin/bundle check --path api/vendor/bundle || api/bin/bundle install --path api/vendor/bundle --jobs 4 --retry 3
+          command: bin/bundle check --path vendor/bundle || bin/bundle install --path vendor/bundle --jobs 4 --retry 3
 
       - save_cache:
           name: Store bundle cache
-          key: api-bundle-{{ checksum "api/Gemfile.lock" }}
+          key: api-bundle-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       
@@ -48,12 +48,12 @@ jobs:
           name: Set up DB
           command: dockerize -wait tcp://127.0.0.1:5432 -timeout 120s
 
-      - run: api/bin/bundle exec rails db:create
-      - run: api/bin/bundle exec rails db:schema:load
+      - run: bin/bundle exec rails db:create
+      - run: bin/bundle exec rails db:schema:load
 
       - run:
           name: RSpec
-          command: api/bin/bundle exec rspec
+          command: bin/bundle exec rspec
 
       - store_artifacts:
           path: coverage
