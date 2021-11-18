@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
 
-      resources :teachers, only: %i(create update show) do
+      resources :teachers, only: %i(index create update show) do
         resources :subjects, only: %i(show create update destroy)
         resources :komas, only: %i(index create update destroy)
       end

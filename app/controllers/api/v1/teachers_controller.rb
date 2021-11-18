@@ -1,6 +1,12 @@
 class Api::V1::TeachersController < ApplicationController
-  before_action :require_user_logged_in, only: %i[update]
+  before_action :require_user_logged_in, only: %i[show update]
   before_action :ensure_normal_user, only: %i[update]
+
+  def index
+    @teachers = Teacher.all
+
+    render 'index.json.jb'
+  end
 
   def show
     @teacher = Teacher.find(params[:id])

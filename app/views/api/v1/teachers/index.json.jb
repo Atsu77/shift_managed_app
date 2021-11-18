@@ -1,0 +1,10 @@
+teachers = @teachers.map do |teacher|
+{
+  teacher: {
+    id: teacher.id,
+    name: teacher.name,
+  }
+}
+end
+
+{teachers: teachers}
