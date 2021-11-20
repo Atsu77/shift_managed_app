@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as History from 'history';
-import './index.css';
+import './assets/reset.css'
 import App from './App';
 import createStore from './redux/store/store';
 import { Provider } from 'react-redux';
