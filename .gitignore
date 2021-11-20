@@ -59,6 +59,7 @@ front/app/.env.production.local
 front/app/npm-debug.log*
 front/app/yarn-debug.log*
 front/app/yarn-error.log*
+front/app/.vscode/*
 
 vendor/*
 spec/images/*
