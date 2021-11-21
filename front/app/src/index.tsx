@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as History from 'history';
+import { ConnectedRouter } from 'connected-react-router'
 import './assets/reset.css'
 import App from './App';
 import createStore from './redux/store/store';
@@ -11,7 +12,9 @@ export const store = createStore(history);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );
