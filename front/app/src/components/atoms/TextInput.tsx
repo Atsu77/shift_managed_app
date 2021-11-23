@@ -5,21 +5,24 @@ import React from "react";
 
 interface Props extends TextFieldProps {
   label?: string,
-  onChange?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const useStyles = makeStyles({
   full: {
     border: "solid .5px", 
+    borderColor: "#000",
+    borderRadius: "10px",
     height: "2em",
     padding: "6px .5rem 3px",
-    borderRadius: "10px",
     marginBottom: "16px",
-    fontSize: "20px"
+    fontSize: "20px",
+    backgroundColor: "#ffe"
   },
   half: {
     border: "solid .5px", 
     borderRadius: "10px",
+    borderColor: "#000",
     marginLeft: "8px",
     marginRight: "8px",
     marginBottom: "16px",
@@ -27,7 +30,8 @@ const useStyles = makeStyles({
     padding: "6px .5rem 3px",
     minWidth: "130px",
     width: "calc(50% - 16px)",
-    fontSize: "20px"
+    fontSize: "20px",
+    backgroundColor: "#ffe"
   },
 });
 
@@ -39,7 +43,6 @@ const TextInput: React.FC<Props> = (props) => {
     <TextField
       className={textStyle}
       fullWidth={props.fullWidth}
-      label={props.label}
       margin="dense"
       multiline={props.multiLine}
       required={props.required}
