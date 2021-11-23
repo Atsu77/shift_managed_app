@@ -9,7 +9,7 @@ const theme = createTheme({
     background: {
       default: '#29458B',
     },
-    text: { primary: '#ff9800' },
+    text: { primary: '#202020' },
   },
 });
 
