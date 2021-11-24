@@ -1,6 +1,7 @@
 # セッションを使うためApplicationController::APIを継承していない
 class ApplicationController < ActionController::Base
   include SessionsHelper
+  protect_from_forgery
 
   def require_user_logged_in
     return if logged_in?
