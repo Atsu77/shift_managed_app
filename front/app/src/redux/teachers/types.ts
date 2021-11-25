@@ -1,11 +1,11 @@
 import { Reducer } from "react";
-import { initialState } from "../store/initialState";
 import { initialStateType } from "../store/types";
-import { FETCH_TEACHERS_PROFILE } from "./actions";
+import { SIGN_UP_TEACHER } from "./actions";
 
 export type Teacher = {
   id: number | null;
   name: string;
+  email: string;
   isSignedIn: boolean | null;
 }
 
@@ -15,10 +15,10 @@ export interface Actions<TType, TPayload> {
   payload: TPayload
 }
 
-type FetchTeachersAction = Actions<typeof FETCH_TEACHERS_PROFILE, Array<Teacher>>
+type SignUpTeacherAction = Actions<typeof SIGN_UP_TEACHER, Teacher>
 
-type ActionTypes = FetchTeachersAction;
+type ActionTypes = SignUpTeacherAction;
 
 // ReducerType
-export type ReducerType = Reducer<initialStateType, ActionTypes>;
+export type ReducerType = Reducer<Teacher, ActionTypes>;
 

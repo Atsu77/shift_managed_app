@@ -1,9 +1,9 @@
 import { Teacher } from "./types";
 
-export const FETCH_TEACHERS_PROFILE = "FETCH_TEACHERS_PROFILE";
-export const fetchTeachersListAction = (TeacherList: Array<Teacher>) => {
+export const SIGN_UP_TEACHER = "SIGN_UP_TEACHER";
+export const signUpTeacher = (teacherInfo: Teacher) => {
   return {
-    type: "FETCH_TEACHERS_PROFILE",
-    payload: TeacherList
+    type: SIGN_UP_TEACHER,
+    payload: teacherInfo
   }
 }

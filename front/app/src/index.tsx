@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import * as History from "history";
 import { ConnectedRouter } from "connected-react-router";
 import './assets/reset.css'
+import './assets/style.css'
+
 import './index.css'
 import App from "./App";
 import createStore from "./redux/store/store";
