@@ -1,5 +1,5 @@
 class Api::V1::TeachersController < ApplicationController
-  #protect_from_forgery
+  # protect_from_forgery
   before_action :require_user_logged_in, only: %i[show update]
   before_action :ensure_normal_user, only: %i[update]
 
@@ -16,17 +16,14 @@ class Api::V1::TeachersController < ApplicationController
   end
 
   def create
-    binding.pry
     @teacher = Teacher.new(new_teacher_params)
-    
+
     if @teacher.save
       session[:user_id] = @teacher.id
-      binding.pry
-      
-      render 'show.json.jb'
+
+      render json: { id: @teacher.id, name: @teacher.name, email: @teacher.email }
     else
       render_errors(@teacher)
-      binding.pry
     end
   end
 
@@ -54,7 +51,7 @@ class Api::V1::TeachersController < ApplicationController
 
   def ensure_normal_user
     if current_user.email == 'guest@example.com'
-      render json: {message: 'ゲストユーザーではユーザー情報の変更は出来ません'}, status: :forbidden
+      render json: { message: 'ゲストユーザーではユーザー情報の変更は出来ません' }, status: :forbidden
     end
   end
 end
