@@ -8,14 +8,7 @@ import {
 } from "../../function/common";
 import { TeacherIndex } from "../../urls";
 import { signUpTeacher } from "./actions";
-import { initialStateType } from "../store/types";
-
-export type signUpParamsType = {
-  name: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
-};
+import { initialStateType, signUpParamsType } from "../store/types";
 
 export const signUp = (params: signUpParamsType) => {
   const { name, email, password, passwordConfirmation } = params;
@@ -67,6 +60,7 @@ export const signUp = (params: signUpParamsType) => {
         dispatch(push("/"));
       })
       .catch(() => {
+        dispatch(push("/si"));
         alert("アカウント登録に失敗しました。もう一度お試し下さい。");
       });
   };

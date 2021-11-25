@@ -8,10 +8,10 @@ import Auth from './components/templates/Auth';
 const Router = () => {
   return (
     <Switch>
-      <Route exact path="/teachers" component={TeachersList}/>
+      <Route exact path="(/)?" component={Home} />
       <Route exact path="/signup" component={SignUp} />
       <Auth>
-        <Route exact path="(/)?" component={Home} />
+        <Route exact path="/teachers" component={TeachersList}/>
       </Auth>
     </Switch>
   )
