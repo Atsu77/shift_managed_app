@@ -11,6 +11,9 @@
 .module-spacer--medium {
   height: 32px;
 }
+.module-spacer--large {
+  height: 64px;
+}
 
 /*********** Section ***********/
 .c-main {
@@ -139,7 +142,7 @@
 
 .u-text__headline {
   color: #ffe;
-  font-size: 1.563rem;
+  font-size: 2.0rem;
   margin: 0 auto 1rem auto;
 }
 

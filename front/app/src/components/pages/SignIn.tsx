@@ -28,8 +28,9 @@ const SignIn = () => {
   return (
     <div className="c-section-container text-center">
       <div className="module-spacer--medium" />
-      <h2 className="u-text-center u-text__headline font-bold">新規登録</h2>
-      <div className="module-spacer--medium" />
+      <h2 className="u-text-center u-text__headline font-bold">Connection Shift</h2>
+      <h3 className="u-text-center font-bold text-white">- 個別指導専用専用シフト管理アプリ -</h3>
+      <div className="module-spacer--large" />
       <AuthForm
         label={"メールアドレス"}
         required={true}
