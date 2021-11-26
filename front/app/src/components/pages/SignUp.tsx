@@ -1,3 +1,4 @@
+import { push } from "connected-react-router";
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../redux/teachers/operations";
@@ -91,7 +92,7 @@ const SignUp = () => {
         />
         <SecondaryButton
           children={"ログインに戻る"}
-          onClick={() => console.log("ゲストログインボタンが押された")}
+          onClick={() => dispatch(push("/signin"))}
         />
       </div>
     </div>
