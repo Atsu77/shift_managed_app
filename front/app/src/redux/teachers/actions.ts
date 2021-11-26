@@ -7,3 +7,11 @@ export const signUpTeacher = (teacherInfo: Teacher) => {
     payload: teacherInfo
   }
 }
+
+export const SIGN_IN_TEACHER = "SIGN_IN_TEACHER";
+export const signInTeacher = (teacherInfo: Teacher) => {
+  return {
+    type: SIGN_IN_TEACHER,
+    payload: teacherInfo
+  }
+}
