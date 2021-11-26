@@ -1,13 +1,6 @@
 import { Reducer } from "react";
-import { initialStateType } from "../store/types";
-import { SIGN_IN_TEACHER, SIGN_UP_TEACHER } from "./actions";
-
-export type Teacher = {
-  id: number | null;
-  name: string;
-  email: string;
-  isSignedIn: boolean | null;
-}
+import { UserType } from "../sessions/types";
+import { SIGN_UP_TEACHER } from "./actions";
 
 // ActionType
 export interface Actions<TType, TPayload> {
@@ -15,13 +8,12 @@ export interface Actions<TType, TPayload> {
   payload: TPayload
 }
 
-type SignUpTeacherAction = Actions<typeof SIGN_UP_TEACHER, Teacher>
-type SignInTeacherAction = Actions<typeof SIGN_IN_TEACHER, Teacher>
+type SignUpTeacherAction = Actions<typeof SIGN_UP_TEACHER, UserType>
 
-type ActionTypes = SignUpTeacherAction | SignInTeacherAction;
+type ActionTypes = SignUpTeacherAction;
 
 // ReducerType
-export type ReducerType = Reducer<Teacher, ActionTypes>;
+export type ReducerType = Reducer<UserType, ActionTypes>;
 
 // OperationType
 export type signUpParamsType = {

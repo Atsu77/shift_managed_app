@@ -1,5 +1,6 @@
-import { Teacher } from "../teachers/types";
+import { UserType } from "../sessions/types";
 
 export type initialStateType = {
-  teacher: Teacher
+  user: UserType
 }
+

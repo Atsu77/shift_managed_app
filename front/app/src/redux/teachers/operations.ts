@@ -6,10 +6,10 @@ import {
   isValidEmailFormat,
   isValidRequiredInput,
 } from "../../function/common";
-import { sessions, TeacherIndex } from "../../urls";
-import { signInTeacher, signUpTeacher } from "./actions";
+import { TeacherIndex } from "../../urls";
+import { signUpTeacher } from "./actions";
 import { initialStateType } from "../store/types";
-import { signInParamsType, signUpParamsType } from "./types";
+import { signUpParamsType } from "./types";
 
 export const signUp = (params: signUpParamsType) => {
   const { name, email, password, passwordConfirmation } = params;
@@ -28,7 +28,7 @@ export const signUp = (params: signUpParamsType) => {
     getState: () => initialStateType
   ) => {
     const state = getState();
-    const isSignedIn = state.teacher.isSignedIn;
+    const isSignedIn = state.user.isSignedIn;
 
     if (isSignedIn) {
       dispatch(push("/"));
@@ -61,48 +61,8 @@ export const signUp = (params: signUpParamsType) => {
         dispatch(push("/"));
       })
       .catch(() => {
-        dispatch(push("/si"));
-        alert("アカウント登録に失敗しました。もう一度お試し下さい。");
-      });
-  };
-};
-
-export const signIn = (params: signInParamsType) => {
-  const { email, password } = params;
-
-  const signInParams = {
-    teacher: {
-      email: email,
-      password: password
-    }
-  }
-
-  return async (
-    dispatch: Dispatch<Action>,
-    getState: () => initialStateType
-  ) => {
-    const state = getState();
-    const isSignedIn = state.teacher.isSignedIn;
-
-    if (isSignedIn) {
-      dispatch(push("/"));
-      return false;
-    }
-    // バリデーション
-    if (!isValidRequiredInput(email, password)) {
-      alert("必須項目が未入力です。");
-      return false;
-    }
-
-    return await axios
-      .post(sessions, signInParams)
-      .then((res) => {
-        dispatch(signInTeacher(res.data));
-        dispatch(push("/"));
-      })
-      .catch(() => {
         dispatch(push("/signin"));
-        alert("ログインに失敗しました。もう一度お試し下さい。");
+        alert("アカウント登録に失敗しました。もう一度お試し下さい。");
       });
   };
 };

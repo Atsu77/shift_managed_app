@@ -1,7 +1,6 @@
 import { push } from "connected-react-router";
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
-import { signIn } from "../../redux/teachers/operations";
 import PrimaryButton from "../atoms/PrimaryButton";
 import SecondaryButton from "../atoms/SecondaryButton";
 import AuthForm from "../molecules/AuthForm";
@@ -46,15 +45,7 @@ const SignIn = () => {
       <div className="module-spacer--medium" />
       <PrimaryButton
         children={"ログイン"}
-        onClick={() =>
-          dispatch(
-            signIn({
-              email: email,
-              password: password,
-            })
-            )
-          }
-      />
+        onClick={() => console.log('push')} />
       <div className="module-spacer--medium" />
       <div className="flex justify-between w-1/2 m-auto">
         <SecondaryButton
@@ -63,7 +54,7 @@ const SignIn = () => {
         />
         <SecondaryButton
           children={"新規登録"}
-          onClick={() => dispatch(push("/signup"))}
+          onClick={() => dispatch(push("/selectuser"))}
         />
       </div>
     </div>

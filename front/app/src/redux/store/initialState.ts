@@ -1,10 +1,11 @@
 import { initialStateType } from "./types";
 
 export const initialState: initialStateType = {
-  teacher: {
+  user : {
     id: null,
     name: "",
     email: "",
     isSignedIn: false,
+    userType: null
   },
 };

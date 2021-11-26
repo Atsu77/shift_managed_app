@@ -15,6 +15,7 @@ interface ExtendedWindow extends Window {
 declare var window: ExtendedWindow;
 
 export default function createStore(history: any) {
+  // eslint-disable-next-line no-mixed-operators
   const composeReduxDevToolsEnhancers = typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   let middleWares = [routerMiddleware(history), thunk];
 
