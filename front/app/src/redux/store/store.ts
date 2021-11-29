@@ -6,7 +6,8 @@ import {
   compose
 } from "redux";
 import thunk from "redux-thunk";
-import TeacherReducer from "../teachers/reducers";
+import SessionReducer from "../sessions/reducers";
+import UserReducer from "../users/reducers";
 
 interface ExtendedWindow extends Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
@@ -21,7 +22,8 @@ export default function createStore(history: any) {
 
   return reduxCreateStore(
     combineReducers({
-      teacher: TeacherReducer,
+      session: SessionReducer, 
+      user: UserReducer,
       router: connectRouter(history),
     }),
     composeReduxDevToolsEnhancers(applyMiddleware(...middleWares))

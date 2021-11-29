@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Teacher } from "../../redux/teachers/types";
 import { TeacherIndex } from "../../urls";
+import { TeacherType } from "../../redux/users/types";
 
 const TeachersList = () => {
 
-  const [teacherList, setTeacherList] = useState<Array<Teacher>>([])
+  const [teacherList, setTeacherList] = useState<Array<TeacherType>>([])
 
   useEffect(() => {
     axios.get(TeacherIndex)
@@ -18,8 +18,8 @@ const TeachersList = () => {
     <div>
       {teacherList.map((teacher) => (
         <ul key={teacher.id}>
-          <li>{teacher.id}</li>
-          <li>{teacher.name}</li>
+          <li style={{color:" #fff"}}>{teacher.id}</li>
+          <li style={{color:" #fff"}}>{teacher.name}</li>
         </ul>
       ))}
     </div>

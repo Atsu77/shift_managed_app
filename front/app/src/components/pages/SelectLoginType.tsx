@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import SecondaryButton from "../atoms/SecondaryButton";
-import { push } from "connected-react-router";
+import { selectLogin } from "../../redux/sessions/operations";
 
-const SelectUserType = () => {
+const SelectLoginType = () => {
   const dispatch = useDispatch();
 
   return (
@@ -24,11 +24,11 @@ const SelectUserType = () => {
       </h2> 
       <div className="module-spacer--extra-small" />
       <div className="flex justify-between w-1/2 m-auto">
-        <SecondaryButton onClick={() => dispatch(push("/signup"))}>講師</SecondaryButton>
-        <SecondaryButton onClick={() => dispatch(push("/signup"))}>生徒</SecondaryButton>
+        <SecondaryButton onClick={() => dispatch(selectLogin('teacher'))}>講師</SecondaryButton>
+        <SecondaryButton onClick={() => dispatch(selectLogin('student'))}>生徒</SecondaryButton>
       </div>
     </div>
   );
 };
 
-export default SelectUserType;
+export default SelectLoginType;

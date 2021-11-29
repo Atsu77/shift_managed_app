@@ -1,13 +1,17 @@
 import { push } from "connected-react-router";
 import React, { useCallback, useState } from "react";
-import { useDispatch } from "react-redux";
-import { signUp } from "../../redux/teachers/operations";
+import { useDispatch, useSelector } from "react-redux";
+import { getLoginType } from "../../redux/sessions/selectors";
+import { initialStateType } from "../../redux/store/types";
+import { signUp } from "../../redux/users/operations";
 import PrimaryButton from "../atoms/PrimaryButton";
 import SecondaryButton from "../atoms/SecondaryButton";
 import AuthForm from "../molecules/AuthForm";
 
 const SignUp = () => {
   const dispatch = useDispatch();
+  const selector = useSelector<initialStateType, initialStateType>((state) => state);
+  const loginType = getLoginType(selector)
   const [name, setName] = useState<string>(""),
     [email, setEmail] = useState<string>(""),
     [password, setPassword] = useState<string>(""),
@@ -46,12 +50,12 @@ const SignUp = () => {
       <div className="module-spacer--medium" />
       <h2 className="u-text-center u-text__headline font-bold">新規登録</h2>
       <div className="module-spacer--medium" />
-      <AuthForm
-        label={"講師名"}
-        required={true}
-        type={"text"}
-        onChange={inputName}
-      />
+        <AuthForm
+          label={loginType === 'student' ? "生徒名" : "講師名"}
+          required={true}
+          type={"text"}
+          onChange={inputName}
+        />
       <AuthForm
         label={"メールアドレス"}
         required={true}

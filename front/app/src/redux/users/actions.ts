@@ -1,4 +1,4 @@
-import { UserType } from "../sessions/types";
+import { UserType } from "./types";
 
 export const SIGN_UP_TEACHER = "SIGN_UP_TEACHER";
 export const signUpTeacher = (teacherInfo: UserType) => {
