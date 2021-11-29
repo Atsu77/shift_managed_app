@@ -54,7 +54,7 @@ const SignIn = () => {
         />
         <SecondaryButton
           children={"新規登録"}
-          onClick={() => dispatch(push("/selectuser"))}
+          onClick={() => dispatch(push("/selectlogin"))}
         />
       </div>
     </div>
