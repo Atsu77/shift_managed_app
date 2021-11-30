@@ -1,17 +1,20 @@
 import { push } from "connected-react-router";
 import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../../redux/sessions/operations";
 import { getLoginType } from "../../redux/sessions/selectors";
 import { initialStateType } from "../../redux/store/types";
-import { signUp } from "../../redux/users/operations";
+//import { signUp } from "../../redux/users/operations";
 import PrimaryButton from "../atoms/PrimaryButton";
 import SecondaryButton from "../atoms/SecondaryButton";
 import AuthForm from "../molecules/AuthForm";
 
 const SignUp = () => {
   const dispatch = useDispatch();
-  const selector = useSelector<initialStateType, initialStateType>((state) => state);
-  const loginType = getLoginType(selector)
+  const selector = useSelector<initialStateType, initialStateType>(
+    (state) => state
+  );
+  const loginType = getLoginType(selector);
   const [name, setName] = useState<string>(""),
     [email, setEmail] = useState<string>(""),
     [password, setPassword] = useState<string>(""),
@@ -50,12 +53,12 @@ const SignUp = () => {
       <div className="module-spacer--medium" />
       <h2 className="u-text-center u-text__headline font-bold">新規登録</h2>
       <div className="module-spacer--medium" />
-        <AuthForm
-          label={loginType === 'student' ? "生徒名" : "講師名"}
-          required={true}
-          type={"text"}
-          onChange={inputName}
-        />
+      <AuthForm
+        label={loginType === "student" ? "生徒名" : "講師名"}
+        required={true}
+        type={"text"}
+        onChange={inputName}
+      />
       <AuthForm
         label={"メールアドレス"}
         required={true}
@@ -85,8 +88,8 @@ const SignUp = () => {
               password: password,
               passwordConfirmation: passwordConfirmation,
             })
-            )
-          }
+          )
+        }
       />
       <div className="module-spacer--medium" />
       <div className="flex justify-between w-1/2 m-auto">

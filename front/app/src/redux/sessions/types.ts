@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { SELECT_LOGIN_TYPE } from "./actions";
+import { SELECT_LOGIN_TYPE, SIGN_UP } from "./actions";
 
 export type SessionType = {
   loginType: LoginType;
@@ -18,10 +18,19 @@ interface Actions<TType, TPayload> {
   payload: TPayload;
 }
 
-type SelectLoginTypeAction = Actions<typeof SELECT_LOGIN_TYPE, LoginType>;
-//type SignInAction = Actions<typeof SIGN_IN, SessionType>
+type SelectLoginTypeActionType = Actions<typeof SELECT_LOGIN_TYPE, LoginType>;
+type SignUpActionType = Actions<typeof SIGN_UP, signUpParamsType>
 
-type ActionTypes = SelectLoginTypeAction;
+type ActionTypes = SelectLoginTypeActionType | SignUpActionType;
 
 // ReducerType
 export type SessionReducerType = Reducer<SessionType, ActionTypes>;
+
+// OperationType
+export type signUpParamsType = {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+};
+
