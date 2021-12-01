@@ -1,9 +1,10 @@
 class Api::V1::SessionsController < ApplicationController
 
   def create
-    email = params[:session][:email].downcase
-    password = params[:session][:password]
-    if login(email, password)
+    email = sign_in_params[:email].downcase
+    password = sign_in_params[:password]
+    loginType = sign_in_params[:login_type]
+    if login(email, password, loginType)
       render 'show.json.jb'
     else
       render json: {message: 'Login failed'}, status: :bad_request
@@ -26,12 +27,18 @@ class Api::V1::SessionsController < ApplicationController
 
   def guest_sign_in
     user = params[:is_teacher] ? Teacher.guest : Student.guest
+    login_type = params[:is_teacher] ? 'teacher' : 'student'
 
-    if login(user.email, user.password)
+    if login(user.email, user.password, login_type)
       render json: { message: '講師のゲストユーザーとしてログインしました' }
     else
       render json: { message: 'ログインに失敗しました' }, status: :bad_request
     end
+  end
+
+  private
+  def sign_in_params
+    params.require(:session).permit(:email, :password, :login_type)
   end
 
 end
