@@ -1,5 +1,6 @@
 import { Reducer } from "react";
-import { SIGN_UP_TEACHER } from "./actions";
+import { LoginType } from "../sessions/types";
+import { SIGN_IN } from "./actions";
 
 export interface UserType {
   id: string | null,
@@ -20,11 +21,16 @@ export interface Actions<TType, TPayload> {
   payload: TPayload;
 }
 
-type SignUpTeacherAction = Actions<typeof SIGN_UP_TEACHER, UserType>;
+type SignInAction = Actions<typeof SIGN_IN, UserType>;
 
-type ActionTypes = SignUpTeacherAction;
+type ActionTypes = SignInAction;
 
 // ReducerType
 export type ReducerType = Reducer<UserType, ActionTypes>;
 
 // OperationType
+export type signInParamsType = {
+  email: string;
+  password: string;
+  loginType: LoginType;
+};

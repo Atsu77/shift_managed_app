@@ -1,5 +1,5 @@
 import { initialState } from "../store/initialState";
-import { SIGN_UP_TEACHER } from "./actions";
+import { SIGN_IN } from "./actions";
 import { ReducerType } from "./types";
 
 const UserReducer: ReducerType = (
@@ -7,9 +7,10 @@ const UserReducer: ReducerType = (
   action
 ) => {
   switch (action.type) {
-    case SIGN_UP_TEACHER:
+    case SIGN_IN:
       return {
         ...state,
+        id: action.payload.id,
         name: action.payload.name,
         email: action.payload.email,
         isSignedIn: true

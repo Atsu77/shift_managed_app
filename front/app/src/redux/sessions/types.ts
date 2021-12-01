@@ -7,11 +7,6 @@ export type SessionType = {
 
 export type LoginType = "teacher" | "student" | "admin" | null;
 
-export type signInParamsType = {
-  email: string;
-  password: string;
-};
-
 // ActionType
 interface Actions<TType, TPayload> {
   type: TType;
