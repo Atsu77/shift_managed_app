@@ -1,9 +1,13 @@
-import React from 'react';
-import Router from './Router';
+import React from "react";
+import Header from "./components/organisms/Header";
+import Router from "./Router";
 
 function App() {
   return (
+    <>
+      <Header />
       <Router />
+    </>
   );
 }
 
