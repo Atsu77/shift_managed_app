@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, memo } from "react";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -13,12 +13,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { push } from "connected-react-router";
 import { getSignedIn } from "../../redux/users/selectors";
 import { initialStateType } from "../../redux/store/types";
+import { signOut } from "../../redux/users/operations";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    appBar:{
+    appBar: {
       backgroundColor: theme.palette.background.default,
-      color: theme.palette.secondary.contrastText 
+      color: theme.palette.secondary.contrastText,
     },
     radio: {
       color: theme.palette.secondary.contrastText,
@@ -27,18 +28,27 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-
-const Header: React.FC = () => {
+const Header: React.FC = memo(() => {
+  console.log('header')
   const classes = useStyles();
-  const dispatch = useDispatch()
-  const selector = useSelector<initialStateType, initialStateType>((state) => state);
-  const isSignedIn = getSignedIn(selector);
+  const dispatch = useDispatch();
+  const selector = useSelector<initialStateType, initialStateType>(
+    (state) => state
+    );
+    const isSignedIn = getSignedIn(selector);
+    console.log(isSignedIn)
 
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenu = useCallback((e) => {
     setAnchorEl(e.currentTarget);
   }, []);
+
+  const onClickSignOut = useCallback(() => {
+    dispatch(signOut());
+    setAnchorEl(null);
+    dispatch(push("/"));
+  }, [dispatch]);
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -57,7 +67,7 @@ const Header: React.FC = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography onClick={() => dispatch(push('/'))}>
+          <Typography onClick={() => dispatch(push("/"))}>
             Connection Shift
           </Typography>
           {isSignedIn && (
@@ -87,8 +97,14 @@ const Header: React.FC = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem
+                  onClick={() => {
+                    onClickSignOut();
+                  }}
+                >
+                  ログアウト
+                </MenuItem>
+                <MenuItem onClick={handleClose}>プロフィール</MenuItem>
               </Menu>
             </div>
           )}
@@ -96,6 +112,6 @@ const Header: React.FC = () => {
       </AppBar>
     </Box>
   );
-};
+});
 
 export default Header;

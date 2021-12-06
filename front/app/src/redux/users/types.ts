@@ -1,6 +1,6 @@
 import { Reducer } from "react";
 import { LoginType } from "../sessions/types";
-import { SIGN_IN } from "./actions";
+import { SIGN_IN, SIGN_OUT } from "./actions";
 
 export interface UserType {
   id: string | null,
@@ -22,8 +22,9 @@ export interface Actions<TType, TPayload> {
 }
 
 type SignInAction = Actions<typeof SIGN_IN, UserType>;
+type SignOutAction = Actions<typeof SIGN_OUT, UserType>;
 
-type ActionTypes = SignInAction;
+type ActionTypes = SignInAction | SignOutAction;
 
 // ReducerType
 export type ReducerType = Reducer<UserType, ActionTypes>;

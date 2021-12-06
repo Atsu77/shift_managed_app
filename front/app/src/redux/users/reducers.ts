@@ -1,5 +1,5 @@
 import { initialState } from "../store/initialState";
-import { SIGN_IN } from "./actions";
+import { SIGN_IN, SIGN_OUT } from "./actions";
 import { ReducerType } from "./types";
 
 const UserReducer: ReducerType = (
@@ -15,6 +15,10 @@ const UserReducer: ReducerType = (
         email: action.payload.email,
         isSignedIn: true
       };
+    case SIGN_OUT:
+      return {
+        ...initialState.user
+      }
     default:
       return state;
   }
