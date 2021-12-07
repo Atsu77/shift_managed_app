@@ -53,7 +53,7 @@ jobs:
 
       - run:
           name: RSpec
-          command: bin/bundle exec rspec
+          command: /bin/bundle exec rspec
 
       - store_artifacts:
           path: coverage
