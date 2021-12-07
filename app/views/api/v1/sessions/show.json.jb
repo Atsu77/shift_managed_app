@@ -1,6 +1,8 @@
 {
   user: {
     id: current_user.id,
-    name: current_user.name
+    name: current_user.name,
+    email: current_user.email,
+    loginType: current_user.class.name
   }
 }

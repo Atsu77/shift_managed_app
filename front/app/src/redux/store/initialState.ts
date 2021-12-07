@@ -1,7 +1,10 @@
 import { initialStateType } from "./types";
 
 export const initialState: initialStateType = {
-  teacher: {
+  session: {
+    loginType: 'teacher'
+  },
+  user: {
     id: null,
     name: "",
     email: "",

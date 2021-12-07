@@ -1,20 +1,38 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::Sessions', type: :request do
-  let(:headers) { {'Content-Type' => 'application/json' }}
+  let(:headers) { { 'Content-Type' => 'application/json' } }
   describe 'POST /api/v1/sessions' do
     let(:teacher) { create(:teacher) }
+    let(:student) { create(:student) }
 
-    context 'リクエストが正しいこと' do
-      it 'スキーマ通りであること' do
+    context '教師のログインリクエストについて' do
+      it 'リクエストが成功すること' do
         params = {
           session: {
             email: teacher.email,
-            password: 'password'
+            password: 'password',
+            login_type: 'teacher'
           }
         }.to_json
         post '/api/v1/sessions', headers: headers, params: params
         expect(response).to have_http_status :ok
+        expect(JSON.parse(response.body)['user']['loginType']).to eq 'Teacher'
+      end
+    end
+    
+    context '生徒のログインリクエストについて' do
+      it 'リクエストが成功すること' do
+        params = {
+          session: {
+            email: student.email,
+            password: 'password',
+            login_type: 'student'
+          }
+        }.to_json
+        post '/api/v1/sessions', headers: headers, params: params
+        expect(response).to have_http_status :ok
+        expect(JSON.parse(response.body)['user']['loginType']).to eq 'Student'
       end
     end
 
@@ -23,7 +41,8 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
         params = {
           session: {
             email: 'invalid@example.com',
-            password: 'password'
+            password: 'password',
+            login_type: 'teacher'
           }
         }.to_json
         post '/api/v1/sessions', headers: headers, params: params
@@ -45,7 +64,8 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
       params = {
         session: {
           email: user.email,
-          password: 'password'
+          password: 'password',
+          login_type: 'teacher'
         }
       }.to_json
       post '/api/v1/sessions', headers: headers, params: params
@@ -61,9 +81,8 @@ RSpec.describe 'Api::V1::Sessions', type: :request do
   describe 'POST /api/v1/sessions/test_user' do
     before do
       create(:teacher, email: 'tester@example.com',
-      password: 'password', password_confirmation: 'password')
+                       password: 'password', password_confirmation: 'password')
     end
-
   end
 
   describe 'ゲストログインについて' do

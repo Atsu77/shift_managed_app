@@ -1,10 +1,13 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Router from './Router';
+import React from "react";
+import Header from "./components/organisms/Header";
+import Router from "./Router";
 
 function App() {
   return (
+    <>
+      <Header />
       <Router />
+    </>
   );
 }
 

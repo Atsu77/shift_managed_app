@@ -1,23 +1,28 @@
 import { initialState } from "../store/initialState";
-import { SIGN_UP_TEACHER } from "./actions";
+import { SIGN_IN, SIGN_OUT } from "./actions";
 import { ReducerType } from "./types";
 
-const TeacherReducer: ReducerType = (
-  state = initialState.teacher,
+const UserReducer: ReducerType = (
+  state = initialState.user,
   action
 ) => {
   switch (action.type) {
-    case SIGN_UP_TEACHER:
+    case SIGN_IN:
       return {
         ...state,
+        id: action.payload.id,
         name: action.payload.name,
         email: action.payload.email,
         isSignedIn: true
       };
+    case SIGN_OUT:
+      return {
+        ...initialState.user
+      }
     default:
       return state;
   }
 };
 
 
-export default TeacherReducer
+export default UserReducer

@@ -16,8 +16,11 @@ const useStyles = makeStyles((theme: Theme) =>
     label: {
       color: theme.palette.secondary.contrastText,
       fontWeight: "bold",
-      fontSize: "21px" 
-    },
+      fontSize: "21px",
+      "&:focus":{
+        color: theme.palette.primary.main
+      }
+    }
   })
 );
 

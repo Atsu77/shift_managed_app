@@ -1,12 +1,8 @@
-import { Teacher } from "../teachers/types";
+import { SessionType} from "../sessions/types";
+import { UserType } from "../users/types";
 
 export type initialStateType = {
-  teacher: Teacher
+  session: SessionType,
+  user: UserType
 }
 
-export type signUpParamsType = {
-  name: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
-};

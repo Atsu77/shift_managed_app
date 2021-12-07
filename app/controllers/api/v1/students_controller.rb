@@ -1,4 +1,4 @@
-class Api::V1::StuentsController < ApplicationController
+class Api::V1::StudentsController < ApplicationController
   before_action :require_user_logged_in, only: %i[update]
 
   def show
@@ -8,8 +8,8 @@ class Api::V1::StuentsController < ApplicationController
   end
 
   def create
-    @student = student.new(new_student_params)
-
+    @student = Student.new(new_student_params)
+    
     if @student.save
       session[:user_id] = @student.id
 
