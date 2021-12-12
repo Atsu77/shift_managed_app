@@ -85,7 +85,7 @@ const SignIn = () => {
       <div className="module-spacer--extra-small" />
       <FormControl component="fieldset">
         <FormLabel focused={false} component="legend" className={classes.formlabel}>ユーザー選択</FormLabel>
-        <RadioGroup row aria-label="login_type" name="row-radio-buttons-group" onChange={inputLoginType}>
+        <RadioGroup row aria-label="login_type" name="row-radio-buttons-group" value={loginType} onChange={inputLoginType}>
           <FormControlLabel value="teacher" control={<Radio />} label="講師" className={classes.radio}/>
           <FormControlLabel value="student" control={<Radio />} label="生徒" className={classes.radio}/>
         </RadioGroup>
